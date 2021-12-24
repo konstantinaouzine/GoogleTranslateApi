@@ -31,18 +31,18 @@ public class BaseClass {
     @BeforeClass
     public void init() {
         RestAssured.baseURI = host;
-        //Log response in case of failure
+        //Log response in case of failure (status codes 400+)
         RestAssured.filters(new ErrorLoggingFilter());
     }
 
     @BeforeMethod
     public void beforeMethod(Method method) {
-        System.out.println("Test: " + method.getName() + " started");
+        System.out.println("\n*****Test: " + method.getName() + " started*****\n");
     }
 
     @AfterMethod
     public void afterMethod(ITestResult result) {
-        System.out.println("Test: " + result.getName() + " finished");
+        System.out.println("\n>>>>>Test: " + result.getName() + " finished<<<<<\n");
     }
 
     private static Properties getPropValues() {
