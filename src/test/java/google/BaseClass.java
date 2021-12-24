@@ -2,18 +2,19 @@ package google;
 
 import io.restassured.RestAssured;
 import io.restassured.filter.log.ErrorLoggingFilter;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.testng.Reporter;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
@@ -32,6 +33,16 @@ public class BaseClass {
         RestAssured.baseURI = host;
         //Log response in case of failure
         RestAssured.filters(new ErrorLoggingFilter());
+    }
+
+    @BeforeMethod
+    public void beforeMethod(Method method) {
+        System.out.println("Test: " + method.getName() + " started");
+    }
+
+    @AfterMethod
+    public void afterMethod(ITestResult result) {
+        System.out.println("Test: " + result.getName() + " finished");
     }
 
     private static Properties getPropValues() {
