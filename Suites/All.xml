@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API tests">
+    <test name="All">
+        <classes>
+            <class name="google.Translate"/>
+        </classes>
+    </test>
+
+</suite>

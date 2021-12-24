@@ -1,0 +1,26 @@
+Scenarios for following api:
+Host: https://google-translate53.p.rapidapi.com
+Endpoint: /Google/Translate
+Method: GET
+Req header 1: X-RapidAPI-Host
+Req header 2: X-RapidAPI-Key
+Req query param: text
+Opt query param: language
+
+1. Supply all possible data - Happy
+2. Supply all possible data (text: different word [not 'Hello']) - Happy
+3. Supply all possible data (text: a sentence with various ASCII chars including numbers) - Happy
+4. Supply all possible data (text: includes tabulation and newline ) - Happy
+5. Supply all possible data (text: nonASCII chars - translation from different language) - Happy
+6. Supply all possible data (text: empty[no text supplied]) - Happy
+7. Supply all possible data (language: not FR[for example 'heb' or 'ru']) - Happy
+8. Don't supply [language] parameter (Optional parameter is missing -> Check FR is a default) - Happy
+9. Don't supply [text] parameter (Required parameter is missing -> Proper status code and response message) - Negative
+10. Don't supply [X-RapidAPI-Key] header (Required header is missing -> Proper status code and response message) - Negative
+11. Don't supply [X-RapidAPI-Host] header (Required header is missing -> Proper status code and response message) - Negative
+12. Supply incorrect [X-RapidAPI-Key] header value (Proper status code and response message) - Negative
+13. Supply incorrect [X-RapidAPI-Host] header value (Proper status code and response message) - Negative
+14. Supply irrelevant headers (Make sure it ignored and response received as expected) - Happy
+15. Supply irrelevant parameters (Make sure it ignored and response received as expected) - Happy
+16. Supply body (Make sure it ignored because GET method used and response received as expected) - Happy
+
